@@ -2,13 +2,13 @@ import React from "react";
 
 import heroMatt from "./Assets/0T7A6514.jpg";
 import catYawn from "./Assets/Cat_Yawn.jpg";
-import oberonEyes from "./Assets/Oberon_Eyes.jpg";
 import janetFlare from "./Assets/Janet_Flare.jpg";
 import maternityClose from "./Assets/Maternity_Close.jpg";
 import maternityCouple from "./Assets/Maternity_Couple.jpg";
 import maternityGlow from "./Assets/Maternity_Glow.jpg";
 import maternityHands from "./Assets/Maternity_Hands.jpg";
 import mattWide from "./Assets/Matt_Wide.jpg";
+import oberonEyes from "./Assets/Oberon_Eyes.jpg";
 import purpleFlower from "./Assets/Purple_Flower.jpg";
 import puya1 from "./Assets/Puya_1.jpg";
 import puya2 from "./Assets/Puya_2.jpg";
@@ -82,8 +82,8 @@ export default function App() {
               Cinematic storytelling through soul and lens.
             </p>
             <p className="text-stone-200/80 text-sm md:text-base mt-6 leading-relaxed">
-              Warm, honest imagery from the Blue Mountains and beyond — portraits,
-              botanics, intimacy, and the quiet moments that actually matter.
+              Warm, honest imagery from the Blue Mountains and beyond —
+              intimacy, portraits, wild softness, and quiet moments that actually matter.
             </p>
             <div className="flex flex-wrap gap-4 mt-8">
               <a
@@ -104,170 +104,212 @@ export default function App() {
       </section>
 
       {/* PORTFOLIO */}
-      <section id="portfolio" className="py-20 md:py-28 bg-stone-100 text-stone-900">
+      <section
+        id="portfolio"
+        className="py-20 md:py-28 bg-stone-100 text-stone-900"
+      >
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-3xl font-semibold mb-10">Portfolio</h2>
 
-          {/* Love & Connection */}
+          {/* Love and Connection */}
           <div className="mb-16">
-            <h3 className="text-2xl font-medium mb-3">Love & Connection</h3>
-            <div className="grid md:grid-cols-3 gap-4">
+            <h3 className="text-2xl font-medium mb-3">Love and Connection</h3>
+            <p className="text-stone-600 text-sm mb-6 max-w-xl">
+              Tender, held, present. The honesty between people when they feel safe.
+            </p>
+
+            <div className="grid md:grid-cols-5 gap-4">
+              {/* sunsetKiss */}
               <div
-                className="rounded-xl h-80 bg-cover bg-center"
+                className="rounded-xl h-72 md:col-span-2 bg-cover bg-center"
                 style={{ backgroundImage: `url(${sunsetKiss})` }}
               ></div>
-              <div
-                className="rounded-xl h-80 bg-cover bg-center"
-                style={{ backgroundImage: `url(${sunsetPastel})` }}
-              ></div>
-              <div
-                className="rounded-xl h-80 bg-cover bg-center"
-                style={{ backgroundImage: `url(${sunsetMatt})` }}
-              ></div>
-            </div>
-          </div>
 
-          {/* Motherhood & Intimacy */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-medium mb-3">Motherhood & Intimacy</h3>
-            <div className="grid md:grid-cols-4 gap-4">
+              {/* maternityCouple */}
               <div
-                className="rounded-xl h-72 bg-cover bg-center"
-                style={{ backgroundImage: `url(${maternityClose})` }}
-              ></div>
-              <div
-                className="rounded-xl h-72 bg-cover bg-center"
-                style={{ backgroundImage: `url(${maternityGlow})` }}
-              ></div>
-              <div
-                className="rounded-xl h-72 bg-cover bg-center"
-                style={{ backgroundImage: `url(${maternityHands})` }}
-              ></div>
-              <div
-                className="rounded-xl h-72 bg-cover bg-center"
+                className="rounded-xl h-72 md:col-span-3 bg-cover bg-center"
                 style={{ backgroundImage: `url(${maternityCouple})` }}
               ></div>
+
+              {/* maternityGlow */}
+              <div
+                className="rounded-xl h-72 md:col-span-2 bg-cover bg-center"
+                style={{ backgroundImage: `url(${maternityGlow})` }}
+              ></div>
+
+              {/* maternityHands */}
+              <div
+                className="rounded-xl h-72 md:col-span-2 bg-cover bg-center"
+                style={{ backgroundImage: `url(${maternityHands})` }}
+              ></div>
+
+              {/* maternityClose */}
+              <div
+                className="rounded-xl h-72 md:col-span-1 bg-cover bg-center"
+                style={{ backgroundImage: `url(${maternityClose})` }}
+              ></div>
             </div>
           </div>
 
-          {/* Portraits & Presence */}
+          {/* Portraits & Soul */}
           <div className="mb-16">
-            <h3 className="text-2xl font-medium mb-3">Portraits & Presence</h3>
-            <div className="grid md:grid-cols-3 gap-4">
-              <div
-                className="rounded-xl h-80 bg-cover bg-center"
-                style={{ backgroundImage: `url(${mattWide})` }}
-              ></div>
-              <div
-                className="rounded-xl h-80 bg-cover bg-center"
-                style={{ backgroundImage: `url(${sunsetMoody})` }}
-              ></div>
-              <div
-                className="rounded-xl h-80 bg-cover bg-center"
-                style={{ backgroundImage: `url(${sunsetLayers})` }}
-              ></div>
-            </div>
-          </div>
+            <h3 className="text-2xl font-medium mb-3">Portraits &amp; Soul</h3>
+            <p className="text-stone-600 text-sm mb-6 max-w-xl">
+              Presence, memory, colour, devotion.
+            </p>
 
-          {/* Soul & Landscape */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-medium mb-3">Soul & Landscape</h3>
-            <div className="grid md:grid-cols-5 gap-4">
+            <div className="grid md:grid-cols-6 gap-4">
+              {/* wedding */}
               <div
-                className="rounded-xl h-48 md:h-60 bg-cover bg-center"
-                style={{ backgroundImage: `url(${purpleFlower})` }}
+                className="rounded-xl h-80 md:col-span-2 bg-cover bg-center"
+                style={{ backgroundImage: `url(${wedding})` }}
               ></div>
+
+              {/* janetFlare */}
               <div
-                className="rounded-xl h-48 md:h-60 bg-cover bg-center"
-                style={{ backgroundImage: `url(${whiteFlower})` }}
+                className="rounded-xl h-80 md:col-span-2 bg-cover bg-center"
+                style={{ backgroundImage: `url(${janetFlare})` }}
               ></div>
+
+              {/* puya1 */}
               <div
-                className="rounded-xl h-48 md:h-60 bg-cover bg-center"
+                className="rounded-xl h-80 md:col-span-2 bg-cover bg-center"
                 style={{ backgroundImage: `url(${puya1})` }}
               ></div>
+
+              {/* puya2 */}
               <div
-                className="rounded-xl h-48 md:h-60 bg-cover bg-center"
+                className="rounded-xl h-72 md:col-span-2 bg-cover bg-center"
                 style={{ backgroundImage: `url(${puya2})` }}
               ></div>
+
+              {/* puya3 */}
               <div
-                className="rounded-xl h-48 md:h-60 bg-cover bg-center"
+                className="rounded-xl h-72 md:col-span-2 bg-cover bg-center"
                 style={{ backgroundImage: `url(${puya3})` }}
+              ></div>
+
+              {/* purpleFlower */}
+              <div
+                className="rounded-xl h-72 md:col-span-1 bg-cover bg-center"
+                style={{ backgroundImage: `url(${purpleFlower})` }}
+              ></div>
+
+              {/* whiteFlower */}
+              <div
+                className="rounded-xl h-72 md:col-span-1 bg-cover bg-center"
+                style={{ backgroundImage: `url(${whiteFlower})` }}
+              ></div>
+            </div>
+          </div>
+
+          {/* Sunsets & Landscape */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-medium mb-3">Sunsets &amp; Landscape</h3>
+            <p className="text-stone-600 text-sm mb-6 max-w-xl">
+              Edges of daylight in the Blue Mountains. Breath-before-dark energy.
+            </p>
+
+            <div className="grid md:grid-cols-5 gap-4">
+              {/* mattWide */}
+              <div
+                className="rounded-xl h-72 md:col-span-2 bg-cover bg-center"
+                style={{ backgroundImage: `url(${mattWide})` }}
+              ></div>
+
+              {/* sunsetMatt */}
+              <div
+                className="rounded-xl h-72 md:col-span-1 bg-cover bg-center"
+                style={{ backgroundImage: `url(${sunsetMatt})` }}
+              ></div>
+
+              {/* sunsetLayers */}
+              <div
+                className="rounded-xl h-72 md:col-span-2 bg-cover bg-center"
+                style={{ backgroundImage: `url(${sunsetLayers})` }}
+              ></div>
+
+              {/* sunsetMoody */}
+              <div
+                className="rounded-xl h-72 md:col-span-3 bg-cover bg-center"
+                style={{ backgroundImage: `url(${sunsetMoody})` }}
+              ></div>
+
+              {/* sunsetPastel */}
+              <div
+                className="rounded-xl h-72 md:col-span-2 bg-cover bg-center"
+                style={{ backgroundImage: `url(${sunsetPastel})` }}
               ></div>
             </div>
           </div>
 
           {/* Animals & Companionship */}
           <div className="mb-16">
-            <h3 className="text-2xl font-medium mb-3">Animals & Companionship</h3>
+            <h3 className="text-2xl font-medium mb-3">
+              Animals &amp; Companionship
+            </h3>
+            <p className="text-stone-600 text-sm mb-6 max-w-xl">
+              Soft faces, stolen naps, being chosen by another creature.
+            </p>
+
             <div className="grid md:grid-cols-2 gap-4">
+              {/* catYawn */}
               <div
                 className="rounded-xl h-80 bg-cover bg-center"
                 style={{ backgroundImage: `url(${catYawn})` }}
               ></div>
+
+              {/* oberonEyes */}
               <div
                 className="rounded-xl h-80 bg-cover bg-center"
                 style={{ backgroundImage: `url(${oberonEyes})` }}
               ></div>
             </div>
           </div>
-
-          {/* Brand & Space (Client Work Preview) */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-medium mb-3">Brand & Space</h3>
-            <p className="text-stone-600 text-sm mb-4">
-              Featuring Unwind Studios (recovery & breathwork).
-            </p>
-            <div className="grid md:grid-cols-5 gap-4">
-              <div
-                className="rounded-xl h-48 md:h-60 bg-cover bg-center"
-                style={{ backgroundImage: `url(${unwindOwner})` }}
-              ></div>
-              <div
-                className="rounded-xl h-48 md:h-60 bg-cover bg-center"
-                style={{ backgroundImage: `url(${unwindClose})` }}
-              ></div>
-              <div
-                className="rounded-xl h-48 md:h-60 bg-cover bg-center"
-                style={{ backgroundImage: `url(${unwindDetail})` }}
-              ></div>
-              <div
-                className="rounded-xl h-48 md:h-60 bg-cover bg-center"
-                style={{ backgroundImage: `url(${unwindMerch})` }}
-              ></div>
-              <div
-                className="rounded-xl h-48 md:h-60 bg-cover bg-center"
-                style={{ backgroundImage: `url(${unwindLounge})` }}
-              ></div>
-            </div>
-          </div>
-
-          {/* Ceremony & Union (Optional future section) */}
-          {/* 
-          <div className="mb-16">
-            <h3 className="text-2xl font-medium mb-3">Ceremony & Union</h3>
-            <div className="grid md:grid-cols-1 gap-4">
-              <div
-                className="rounded-xl h-96 bg-cover bg-center"
-                style={{ backgroundImage: `url(${wedding})` }}
-              ></div>
-            </div>
-          </div>
-          */}
         </div>
       </section>
 
       {/* CLIENT WORK */}
-      <section id="client" className="py-20 md:py-28 bg-stone-900 text-stone-100">
+      <section
+        id="client"
+        className="py-20 md:py-28 bg-stone-900 text-stone-100"
+      >
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-3xl font-semibold mb-10">Client Work</h2>
-          <p className="text-stone-300 mb-6">
-            Featuring Unwind Studios, a premium recovery & breathwork space — coming soon.
+          <p className="text-stone-300 mb-6 max-w-xl">
+            Unwind Studios — recovery, breathwork, and stillness.
           </p>
+
+          <div className="grid md:grid-cols-5 gap-4">
+            <div
+              className="rounded-xl h-60 bg-cover bg-center"
+              style={{ backgroundImage: `url(${unwindOwner})` }}
+            ></div>
+            <div
+              className="rounded-xl h-60 bg-cover bg-center"
+              style={{ backgroundImage: `url(${unwindClose})` }}
+            ></div>
+            <div
+              className="rounded-xl h-60 bg-cover bg-center"
+              style={{ backgroundImage: `url(${unwindDetail})` }}
+            ></div>
+            <div
+              className="rounded-xl h-60 bg-cover bg-center"
+              style={{ backgroundImage: `url(${unwindMerch})` }}
+            ></div>
+            <div
+              className="rounded-xl h-60 bg-cover bg-center"
+              style={{ backgroundImage: `url(${unwindLounge})` }}
+            ></div>
+          </div>
         </div>
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="py-20 md:py-28 bg-stone-100 text-stone-900">
+      <section
+        id="about"
+        className="py-20 md:py-28 bg-stone-100 text-stone-900"
+      >
         <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
           <div>
             <h2 className="text-3xl font-semibold mb-4">About</h2>
@@ -277,7 +319,8 @@ export default function App() {
             </p>
             <p className="text-stone-700 mb-3">
               My work lives where tenderness meets presence: maternity at sunset,
-              couples in the rain, quiet breath on a cliff before the sun breaks.
+              quiet jawline light, sleepy cats, the second right before you both
+              laugh.
             </p>
             <p className="text-stone-700">
               Soul Lens Media is for people who value real connection over posing,
@@ -295,7 +338,10 @@ export default function App() {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="py-20 md:py-28 bg-stone-200 text-stone-900">
+      <section
+        id="contact"
+        className="py-20 md:py-28 bg-stone-200 text-stone-900"
+      >
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-3xl font-semibold mb-6">Let's talk</h2>
           <p className="text-stone-700 mb-8">
