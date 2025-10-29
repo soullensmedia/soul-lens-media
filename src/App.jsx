@@ -28,7 +28,7 @@ import whiteFlower from "./Assets/White_Flower.jpg";
 
 /* ---------------- LIGHTBOX COMPONENT ---------------- */
 function Lightbox({ src, alt, onClose }) {
-  // ESC to exit
+  // Close on ESC
   useEffect(() => {
     function onKey(e) {
       if (e.key === "Escape") onClose();
@@ -56,10 +56,11 @@ function Lightbox({ src, alt, onClose }) {
 /* ---------------- HORIZONTAL SCROLL ROW COMPONENT ---------------- */
 /*
 - No gradients
-- Arrows at sides
-- Uniform cards (240x240 mobile, 320x320 desktop)
-- snap scrolling on mobile
-- hidden scrollbar
+- Arrows on sides
+- Uniform square cards (240x240 mobile, 320x320 desktop)
+- Snap scrolling on mobile
+- Hidden scrollbar
+- Click opens Lightbox
 */
 function ScrollRow({ images }) {
   const scrollerRef = useRef(null);
@@ -121,7 +122,7 @@ function ScrollRow({ images }) {
         `}
         style={{ WebkitOverflowScrolling: "touch" }}
       >
-        {/* Hide scrollbar Chrome/Safari */}
+        {/* hide scrollbar Chrome/Safari */}
         <style>
           {`
             div::-webkit-scrollbar {
@@ -157,6 +158,8 @@ function ScrollRow({ images }) {
               className="w-full h-full object-cover select-none md:rounded-xl"
               draggable="false"
             />
+
+            {/* Responsive card size (bump to 320px on md+) */}
             <style>
               {`
                 @media (min-width: 768px) {
@@ -175,7 +178,7 @@ function ScrollRow({ images }) {
 }
 
 export default function App() {
-  // Smooth scroll for nav anchors
+  // Smooth scroll for anchor links (#portfolio etc.)
   useEffect(() => {
     document.documentElement.style.scrollBehavior = "smooth";
     return () => {
@@ -197,7 +200,7 @@ export default function App() {
     setLightboxAlt("");
   };
 
-  // IMAGE GROUPS (ORDER LOCKED IN)
+  /* ---------------- IMAGE GROUPS WITH ORDER ---------------- */
 
   // Love & Connection
   const loveAndConnectionImgs = [
@@ -253,7 +256,7 @@ export default function App() {
     onClick: () => openLightbox(img.src, img.alt),
   }));
 
-  // Client work (unchanged)
+  // Client Work
   const clientWorkImgs = [
     { src: unwindOwner, alt: "unwindOwner" },
     { src: unwindClose, alt: "unwindClose" },
@@ -267,7 +270,7 @@ export default function App() {
 
   return (
     <>
-      {/* fullscreen lightbox */}
+      {/* Fullscreen lightbox overlay */}
       <Lightbox src={lightboxSrc} alt={lightboxAlt} onClose={closeLightbox} />
 
       <main className="bg-stone-100 text-stone-800 font-serif leading-relaxed">
@@ -318,7 +321,7 @@ export default function App() {
           </div>
         </header>
 
-        {/* HERO */}
+        {/* HERO / INTRO */}
         <section
           id="home"
           className="relative w-full min-h-[90vh] flex items-end text-stone-100 bg-cover bg-center"
@@ -330,14 +333,23 @@ export default function App() {
               <h1 className="text-4xl md:text-6xl font-semibold text-stone-100 leading-tight tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
                 Soul Lens Media
               </h1>
+
               <p className="text-stone-200/90 text-lg md:text-xl mt-4 italic leading-snug">
                 Cinematic storytelling through soul and lens.
               </p>
+
+              {/* MOVED BLURB HERE */}
+              <p className="text-stone-200/80 text-base md:text-lg mt-6 leading-relaxed italic">
+                Stories of connection, presence, stillness, and adventure —
+                honest moments that breathe with life and light.
+              </p>
+
               <p className="text-stone-200/80 text-sm md:text-base mt-6 leading-relaxed">
                 Warm, honest imagery from the Blue Mountains and beyond —
                 intimacy, portraits, wild softness, and quiet moments that
                 actually matter.
               </p>
+
               <div className="flex flex-wrap gap-4 mt-8">
                 <a
                   href="#portfolio"
@@ -362,14 +374,10 @@ export default function App() {
           className="py-20 md:py-28 bg-stone-100 text-stone-900"
         >
           <div className="max-w-6xl mx-auto px-6">
-            {/* intro line */}
-            <h2 className="text-3xl font-semibold mb-3 tracking-tight">
+            {/* Portfolio heading only (blurb removed from here) */}
+            <h2 className="text-3xl font-semibold mb-10 tracking-tight">
               Portfolio
             </h2>
-            <p className="text-stone-600 text-sm md:text-base leading-relaxed max-w-xl mb-10">
-              Stories of connection, presence, stillness, and adventure —
-              honest moments that breathe with life and light.
-            </p>
 
             {/* Love & Connection */}
             <div className="mb-16">
