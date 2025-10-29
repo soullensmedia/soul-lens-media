@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import heroMatt from "./Assets/0T7A6514.jpg";
 import catYawn from "./Assets/Cat_Yawn.jpg";
@@ -28,6 +28,15 @@ import whiteFlower from "./Assets/White_Flower.jpg";
 
 /* ---------------- LIGHTBOX COMPONENT ---------------- */
 function Lightbox({ src, alt, onClose }) {
+  // close on ESC
+  useEffect(() => {
+    function onKey(e) {
+      if (e.key === "Escape") onClose();
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
   if (!src) return null;
 
   return (
@@ -45,33 +54,107 @@ function Lightbox({ src, alt, onClose }) {
 }
 
 /* ---------------- HORIZONTAL SCROLL ROW COMPONENT ---------------- */
+/*
+Goals:
+- All cards same size
+- Rounded corners, border, soft shadow (like your grid)
+- Horizontal scroll with hidden native scrollbar
+- Gradient fades on left/right
+- Arrow buttons to scroll
+*/
+
 function ScrollRow({ images }) {
-  // images: [{src, alt}]
+  const scrollerRef = useRef(null);
+
+  // scroll helper for arrows
+  const scrollByAmount = (amount) => {
+    if (!scrollerRef.current) return;
+    scrollerRef.current.scrollBy({
+      left: amount,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <div className="overflow-x-auto overflow-y-hidden scrollbar-thin scrollbar-thumb-stone-400/50 scrollbar-track-transparent">
-      <div className="flex gap-4 min-w-max pb-2">
+    <div className="relative">
+      {/* LEFT FADE */}
+      <div className="pointer-events-none absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-stone-100 via-stone-100/80 to-transparent z-10 rounded-l-xl" />
+      {/* RIGHT FADE */}
+      <div className="pointer-events-none absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-stone-100 via-stone-100/80 to-transparent z-10 rounded-r-xl" />
+
+      {/* LEFT ARROW */}
+      <button
+        type="button"
+        onClick={() => scrollByAmount(-350)}
+        className="hidden md:flex absolute left-3 top-1/2 -translate-y-1/2 z-20 h-9 w-9 items-center justify-center rounded-full bg-stone-900/70 text-stone-100 text-lg leading-none shadow-lg hover:bg-stone-900/90"
+        aria-label="scroll left"
+      >
+        ‹
+      </button>
+
+      {/* RIGHT ARROW */}
+      <button
+        type="button"
+        onClick={() => scrollByAmount(350)}
+        className="hidden md:flex absolute right-3 top-1/2 -translate-y-1/2 z-20 h-9 w-9 items-center justify-center rounded-full bg-stone-900/70 text-stone-100 text-lg leading-none shadow-lg hover:bg-stone-900/90"
+        aria-label="scroll right"
+      >
+        ›
+      </button>
+
+      {/* SCROLL CONTAINER */}
+      <div
+        ref={scrollerRef}
+        className="
+          flex gap-4
+          overflow-x-auto overflow-y-hidden
+          scroll-smooth
+          pr-6
+          pl-6
+          pb-4
+          [-ms-overflow-style:none]           /* hide scrollbar IE/Edge */
+          [scrollbar-width:none]              /* hide scrollbar Firefox */
+        "
+        style={{
+          WebkitOverflowScrolling: "touch",
+        }}
+      >
+        {/* hide scrollbar Chrome/Safari */}
+        <style>
+          {`
+            div::-webkit-scrollbar {
+              display: none;
+            }
+          `}
+        </style>
+
         {images.map((img, i) => (
-          <div
+          <button
             key={i}
-            className="bg-stone-200 rounded-xl flex-shrink-0 border border-stone-300/50"
+            onClick={img.onClick}
+            className="
+              relative flex-shrink-0
+              bg-stone-200
+              border border-stone-300/60
+              rounded-xl shadow-md
+              hover:shadow-lg hover:shadow-stone-900/10
+              active:scale-[0.99]
+              transition-all
+              overflow-hidden
+              cursor-zoom-in
+            "
             style={{
-              // We give each item a "card" width. Tall portrait shots will be narrow, wider shots will stretch.
-              // You can tune these breakpoints if you want chunkier cards.
               width: "320px",
+              height: "320px",
             }}
           >
             <img
               src={img.src}
               alt={img.alt || ""}
-              onClick={img.onClick}
-              className="w-full h-full object-contain rounded-xl cursor-zoom-in select-none"
-              style={{
-                // lock height so rows feel consistent,
-                // but use object-contain so the whole image shows.
-                maxHeight: "420px",
-              }}
+              className="w-full h-full object-cover select-none"
+              draggable="false"
             />
-          </div>
+          </button>
         ))}
       </div>
     </div>
@@ -79,7 +162,7 @@ function ScrollRow({ images }) {
 }
 
 export default function App() {
-  // central lightbox state
+  // Lightbox state
   const [lightboxSrc, setLightboxSrc] = useState(null);
   const [lightboxAlt, setLightboxAlt] = useState("");
 
@@ -93,8 +176,7 @@ export default function App() {
     setLightboxAlt("");
   };
 
-  /* ---- SECTION IMAGE ARRAYS ---- */
-
+  // Image groups (your order, your naming)
   const loveAndConnectionImgs = [
     { src: sunsetKiss, alt: "sunsetKiss" },
     { src: maternityCouple, alt: "maternityCouple" },
@@ -151,7 +233,7 @@ export default function App() {
 
   return (
     <>
-      {/* LIGHTBOX OVERLAY */}
+      {/* Fullscreen lightbox */}
       <Lightbox src={lightboxSrc} alt={lightboxAlt} onClose={closeLightbox} />
 
       <main className="bg-stone-100 text-stone-800 font-serif leading-relaxed">
@@ -202,7 +284,7 @@ export default function App() {
           </div>
         </header>
 
-        {/* HERO SECTION */}
+        {/* HERO */}
         <section
           id="home"
           className="relative w-full min-h-[90vh] flex items-end text-stone-100 bg-cover bg-center"
@@ -335,7 +417,7 @@ export default function App() {
               </p>
             </div>
 
-            <div className="rounded-2xl overflow-hidden bg-stone-200 border border-stone-300/60">
+            <div className="rounded-2xl overflow-hidden bg-stone-200 border border-stone-300/60 shadow-md">
               <img
                 src={sunsetLayers}
                 alt="about-section"
