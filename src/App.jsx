@@ -1,35 +1,28 @@
 import React from "react";
 
 import heroMatt from "./Assets/0T7A6514.jpg";
-
 import catYawn from "./Assets/Cat_Yawn.jpg";
 import oberonEyes from "./Assets/Oberon_Eyes.jpg";
-
-import janetFlare from "./Assets/Janet_Flare.jpg"; // not placed yet but keeping for later
+import janetFlare from "./Assets/Janet_Flare.jpg";
 import maternityClose from "./Assets/Maternity_Close.jpg";
 import maternityCouple from "./Assets/Maternity_Couple.jpg";
 import maternityGlow from "./Assets/Maternity_Glow.jpg";
 import maternityHands from "./Assets/Maternity_Hands.jpg";
-
 import mattWide from "./Assets/Matt_Wide.jpg";
-
 import purpleFlower from "./Assets/Purple_Flower.jpg";
 import puya1 from "./Assets/Puya_1.jpg";
 import puya2 from "./Assets/Puya_2.jpg";
 import puya3 from "./Assets/Puya_3.jpg";
-
 import sunsetKiss from "./Assets/Sunset_Kiss.jpg";
 import sunsetLayers from "./Assets/Sunset_Layers.jpg";
 import sunsetMatt from "./Assets/Sunset_Matt.jpg";
 import sunsetMoody from "./Assets/Sunset_Moody.jpg";
 import sunsetPastel from "./Assets/Sunset_Pastel.jpg";
-
 import unwindClose from "./Assets/Unwind_Close.jpg";
 import unwindDetail from "./Assets/Unwind_Detail.jpg";
 import unwindLounge from "./Assets/Unwind_Lounge.jpg";
 import unwindMerch from "./Assets/Unwind_Merch.jpg";
 import unwindOwner from "./Assets/Unwind_Owner.jpg";
-
 import wedding from "./Assets/Wedding.jpg";
 import whiteFlower from "./Assets/White_Flower.jpg";
 
