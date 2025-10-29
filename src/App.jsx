@@ -1,5 +1,37 @@
 import React from "react";
-import heroImage from "./Assets/0T7A6514.jpg";
+
+import heroMatt from "./Assets/0T7A6514.jpg";
+
+import catYawn from "./Assets/Cat_Yawn.jpg";
+import oberonEyes from "./Assets/Oberon_Eyes.jpg";
+
+import janetFlare from "./Assets/Janet_Flare.jpg"; // not placed yet but keeping for later
+import maternityClose from "./Assets/Maternity_Close.jpg";
+import maternityCouple from "./Assets/Maternity_Couple.jpg";
+import maternityGlow from "./Assets/Maternity_Glow.jpg";
+import maternityHands from "./Assets/Maternity_Hands.jpg";
+
+import mattWide from "./Assets/Matt_Wide.jpg";
+
+import purpleFlower from "./Assets/Purple_Flower.jpg";
+import puya1 from "./Assets/Puya_1.jpg";
+import puya2 from "./Assets/Puya_2.jpg";
+import puya3 from "./Assets/Puya_3.jpg";
+
+import sunsetKiss from "./Assets/Sunset_Kiss.jpg";
+import sunsetLayers from "./Assets/Sunset_Layers.jpg";
+import sunsetMatt from "./Assets/Sunset_Matt.jpg";
+import sunsetMoody from "./Assets/Sunset_Moody.jpg";
+import sunsetPastel from "./Assets/Sunset_Pastel.jpg";
+
+import unwindClose from "./Assets/Unwind_Close.jpg";
+import unwindDetail from "./Assets/Unwind_Detail.jpg";
+import unwindLounge from "./Assets/Unwind_Lounge.jpg";
+import unwindMerch from "./Assets/Unwind_Merch.jpg";
+import unwindOwner from "./Assets/Unwind_Owner.jpg";
+
+import wedding from "./Assets/Wedding.jpg";
+import whiteFlower from "./Assets/White_Flower.jpg";
 
 export default function App() {
   return (
@@ -25,10 +57,16 @@ export default function App() {
           </nav>
 
           <div className="flex items-center gap-4">
-            <a href="#contact" className="rounded-2xl bg-stone-800 text-stone-100 text-xs md:text-sm px-4 py-2 font-medium shadow-md hover:bg-stone-700">
+            <a
+              href="#contact"
+              className="rounded-2xl bg-stone-800 text-stone-100 text-xs md:text-sm px-4 py-2 font-medium shadow-md hover:bg-stone-700"
+            >
               book a free chat
             </a>
-            <a href="https://instagram.com/matt.hardaker" className="text-stone-600 hover:text-stone-900 text-sm md:text-base">
+            <a
+              href="https://instagram.com/matt.hardaker"
+              className="text-stone-600 hover:text-stone-900 text-sm md:text-base"
+            >
               IG ↗
             </a>
           </div>
@@ -37,10 +75,10 @@ export default function App() {
 
       {/* HERO SECTION */}
       <section
-  id="home"
-  className="relative w-full min-h-[90vh] flex items-end text-stone-100 bg-cover bg-center"
-  style={{ backgroundImage: `url(${heroImage})` }}
->
+        id="home"
+        className="relative w-full min-h-[90vh] flex items-end text-stone-100 bg-cover bg-center"
+        style={{ backgroundImage: `url(${heroMatt})` }}
+      >
         <div className="absolute inset-0 bg-gradient-to-t from-stone-900/80 via-stone-900/30 to-transparent" />
         <div className="relative max-w-6xl mx-auto px-6 py-24 md:py-32">
           <div className="max-w-xl">
@@ -55,10 +93,16 @@ export default function App() {
               botanics, intimacy, and the quiet moments that actually matter.
             </p>
             <div className="flex flex-wrap gap-4 mt-8">
-              <a href="#portfolio" className="bg-stone-100 text-stone-900 text-xs md:text-sm font-medium px-4 py-2 rounded-2xl shadow hover:bg-stone-200">
+              <a
+                href="#portfolio"
+                className="bg-stone-100 text-stone-900 text-xs md:text-sm font-medium px-4 py-2 rounded-2xl shadow hover:bg-stone-200"
+              >
                 view portfolio
               </a>
-              <a href="#contact" className="border border-stone-100/60 text-stone-100 text-xs md:text-sm font-medium px-4 py-2 rounded-2xl hover:bg-stone-100/10">
+              <a
+                href="#contact"
+                className="border border-stone-100/60 text-stone-100 text-xs md:text-sm font-medium px-4 py-2 rounded-2xl hover:bg-stone-100/10"
+              >
                 book a free chat
               </a>
             </div>
@@ -75,9 +119,18 @@ export default function App() {
           <div className="mb-16">
             <h3 className="text-2xl font-medium mb-3">Love & Connection</h3>
             <div className="grid md:grid-cols-3 gap-4">
-              <div className="rounded-xl h-80 bg-cover bg-center" style={{ backgroundImage: "url(https://drive.google.com/uc?export=view&id=YOUR_MJ_KISS_ID)" }}></div>
-              <div className="rounded-xl h-80 bg-cover bg-center" style={{ backgroundImage: "url(https://drive.google.com/uc?export=view&id=YOUR_BJ26_ID)" }}></div>
-              <div className="rounded-xl h-80 bg-cover bg-center" style={{ backgroundImage: "url(https://drive.google.com/uc?export=view&id=YOUR_0333_ID)" }}></div>
+              <div
+                className="rounded-xl h-80 bg-cover bg-center"
+                style={{ backgroundImage: `url(${sunsetKiss})` }}
+              ></div>
+              <div
+                className="rounded-xl h-80 bg-cover bg-center"
+                style={{ backgroundImage: `url(${sunsetPastel})` }}
+              ></div>
+              <div
+                className="rounded-xl h-80 bg-cover bg-center"
+                style={{ backgroundImage: `url(${sunsetMatt})` }}
+              ></div>
             </div>
           </div>
 
@@ -85,30 +138,128 @@ export default function App() {
           <div className="mb-16">
             <h3 className="text-2xl font-medium mb-3">Motherhood & Intimacy</h3>
             <div className="grid md:grid-cols-4 gap-4">
-              <div className="rounded-xl h-72 bg-cover bg-center" style={{ backgroundImage: "url(https://drive.google.com/uc?export=view&id=YOUR_BJ23_ID)" }}></div>
-              <div className="rounded-xl h-72 bg-cover bg-center" style={{ backgroundImage: "url(https://drive.google.com/uc?export=view&id=YOUR_BJ9_ID)" }}></div>
-              <div className="rounded-xl h-72 bg-cover bg-center" style={{ backgroundImage: "url(https://drive.google.com/uc?export=view&id=YOUR_BJ29_ID)" }}></div>
-              <div className="rounded-xl h-72 bg-cover bg-center" style={{ backgroundImage: "url(https://drive.google.com/uc?export=view&id=YOUR_BJ26_ID)" }}></div>
+              <div
+                className="rounded-xl h-72 bg-cover bg-center"
+                style={{ backgroundImage: `url(${maternityClose})` }}
+              ></div>
+              <div
+                className="rounded-xl h-72 bg-cover bg-center"
+                style={{ backgroundImage: `url(${maternityGlow})` }}
+              ></div>
+              <div
+                className="rounded-xl h-72 bg-cover bg-center"
+                style={{ backgroundImage: `url(${maternityHands})` }}
+              ></div>
+              <div
+                className="rounded-xl h-72 bg-cover bg-center"
+                style={{ backgroundImage: `url(${maternityCouple})` }}
+              ></div>
             </div>
           </div>
 
           {/* Portraits & Presence */}
           <div className="mb-16">
             <h3 className="text-2xl font-medium mb-3">Portraits & Presence</h3>
-            <p className="text-stone-600">To be added...</p>
+            <div className="grid md:grid-cols-3 gap-4">
+              <div
+                className="rounded-xl h-80 bg-cover bg-center"
+                style={{ backgroundImage: `url(${mattWide})` }}
+              ></div>
+              <div
+                className="rounded-xl h-80 bg-cover bg-center"
+                style={{ backgroundImage: `url(${sunsetMoody})` }}
+              ></div>
+              <div
+                className="rounded-xl h-80 bg-cover bg-center"
+                style={{ backgroundImage: `url(${sunsetLayers})` }}
+              ></div>
+            </div>
           </div>
 
           {/* Soul & Landscape */}
           <div className="mb-16">
             <h3 className="text-2xl font-medium mb-3">Soul & Landscape</h3>
-            <p className="text-stone-600">To be added...</p>
+            <div className="grid md:grid-cols-5 gap-4">
+              <div
+                className="rounded-xl h-48 md:h-60 bg-cover bg-center"
+                style={{ backgroundImage: `url(${purpleFlower})` }}
+              ></div>
+              <div
+                className="rounded-xl h-48 md:h-60 bg-cover bg-center"
+                style={{ backgroundImage: `url(${whiteFlower})` }}
+              ></div>
+              <div
+                className="rounded-xl h-48 md:h-60 bg-cover bg-center"
+                style={{ backgroundImage: `url(${puya1})` }}
+              ></div>
+              <div
+                className="rounded-xl h-48 md:h-60 bg-cover bg-center"
+                style={{ backgroundImage: `url(${puya2})` }}
+              ></div>
+              <div
+                className="rounded-xl h-48 md:h-60 bg-cover bg-center"
+                style={{ backgroundImage: `url(${puya3})` }}
+              ></div>
+            </div>
           </div>
 
           {/* Animals & Companionship */}
           <div className="mb-16">
             <h3 className="text-2xl font-medium mb-3">Animals & Companionship</h3>
-            <p className="text-stone-600">To be added...</p>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div
+                className="rounded-xl h-80 bg-cover bg-center"
+                style={{ backgroundImage: `url(${catYawn})` }}
+              ></div>
+              <div
+                className="rounded-xl h-80 bg-cover bg-center"
+                style={{ backgroundImage: `url(${oberonEyes})` }}
+              ></div>
+            </div>
           </div>
+
+          {/* Brand & Space (Client Work Preview) */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-medium mb-3">Brand & Space</h3>
+            <p className="text-stone-600 text-sm mb-4">
+              Featuring Unwind Studios (recovery & breathwork).
+            </p>
+            <div className="grid md:grid-cols-5 gap-4">
+              <div
+                className="rounded-xl h-48 md:h-60 bg-cover bg-center"
+                style={{ backgroundImage: `url(${unwindOwner})` }}
+              ></div>
+              <div
+                className="rounded-xl h-48 md:h-60 bg-cover bg-center"
+                style={{ backgroundImage: `url(${unwindClose})` }}
+              ></div>
+              <div
+                className="rounded-xl h-48 md:h-60 bg-cover bg-center"
+                style={{ backgroundImage: `url(${unwindDetail})` }}
+              ></div>
+              <div
+                className="rounded-xl h-48 md:h-60 bg-cover bg-center"
+                style={{ backgroundImage: `url(${unwindMerch})` }}
+              ></div>
+              <div
+                className="rounded-xl h-48 md:h-60 bg-cover bg-center"
+                style={{ backgroundImage: `url(${unwindLounge})` }}
+              ></div>
+            </div>
+          </div>
+
+          {/* Ceremony & Union (Optional future section) */}
+          {/* 
+          <div className="mb-16">
+            <h3 className="text-2xl font-medium mb-3">Ceremony & Union</h3>
+            <div className="grid md:grid-cols-1 gap-4">
+              <div
+                className="rounded-xl h-96 bg-cover bg-center"
+                style={{ backgroundImage: `url(${wedding})` }}
+              ></div>
+            </div>
+          </div>
+          */}
         </div>
       </section>
 
@@ -140,11 +291,11 @@ export default function App() {
               and feeling over polish.
             </p>
           </div>
+
           <div
             className="rounded-2xl bg-cover bg-center h-96"
             style={{
-              backgroundImage:
-                "url(https://drive.google.com/uc?export=view&id=1Xws6pkPa3I1BdrXRrO4lUbMqZ7TYei-z)",
+              backgroundImage: `url(${sunsetLayers})`,
             }}
           ></div>
         </div>
@@ -159,10 +310,22 @@ export default function App() {
             brand work, or something we haven't named yet.
           </p>
           <form className="grid gap-6 text-sm max-w-xl">
-            <input placeholder="Your name" className="bg-white border border-stone-400/40 rounded-xl px-4 py-3" />
-            <input placeholder="you@email.com" className="bg-white border border-stone-400/40 rounded-xl px-4 py-3" />
-            <textarea placeholder="Your message" className="bg-white border border-stone-400/40 rounded-xl px-4 py-3 min-h-[6rem] resize-none" />
-            <button type="submit" className="rounded-2xl bg-stone-900 text-stone-100 px-5 py-3 font-medium hover:bg-stone-700">
+            <input
+              placeholder="Your name"
+              className="bg-white border border-stone-400/40 rounded-xl px-4 py-3"
+            />
+            <input
+              placeholder="you@email.com"
+              className="bg-white border border-stone-400/40 rounded-xl px-4 py-3"
+            />
+            <textarea
+              placeholder="Your message"
+              className="bg-white border border-stone-400/40 rounded-xl px-4 py-3 min-h-[6rem] resize-none"
+            />
+            <button
+              type="submit"
+              className="rounded-2xl bg-stone-900 text-stone-100 px-5 py-3 font-medium hover:bg-stone-700"
+            >
               Send enquiry
             </button>
           </form>
@@ -181,14 +344,22 @@ export default function App() {
             </span>
           </div>
           <div className="flex flex-col text-stone-500 leading-relaxed">
-            <a href="https://instagram.com/matt.hardaker" className="hover:text-stone-100">
+            <a
+              href="https://instagram.com/matt.hardaker"
+              className="hover:text-stone-100"
+            >
               Instagram @matt.hardaker
             </a>
-            <a href="mailto:m_hardaker@hotmail.com" className="hover:text-stone-100">
+            <a
+              href="mailto:m_hardaker@hotmail.com"
+              className="hover:text-stone-100"
+            >
               m_hardaker@hotmail.com
             </a>
           </div>
-          <div className="text-stone-600 text-[11px] md:text-xs">© Soul Lens Media 2025</div>
+          <div className="text-stone-600 text-[11px] md:text-xs">
+            © Soul Lens Media 2025
+          </div>
         </div>
       </footer>
     </main>
