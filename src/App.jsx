@@ -55,12 +55,11 @@ function Lightbox({ src, alt, onClose }) {
 
 /* ---------------- HORIZONTAL SCROLL ROW COMPONENT ---------------- */
 /*
-Changes from previous version:
-- Removed gradient fades
-- Arrows sit just outside the scroll container
-- Cards are now responsive: 240x240 on mobile, 320x320 md+
-- snap-mandatory for a premium swipe feel on mobile
-- Hidden scrollbar still
+- No gradients
+- Arrows at sides
+- Uniform cards (240x240 mobile, 320x320 desktop)
+- snap scrolling on mobile
+- hidden scrollbar
 */
 function ScrollRow({ images }) {
   const scrollerRef = useRef(null);
@@ -157,12 +156,6 @@ function ScrollRow({ images }) {
               alt={img.alt || ""}
               className="w-full h-full object-cover select-none md:rounded-xl"
               draggable="false"
-              style={{
-                // on desktop we want 320x320 instead of 240x240
-                // we'll upscale via a media query inline style trick
-                // but React inline styles can't do media queries,
-                // so we'll just handle it with responsive utility classes below.
-              }}
             />
             <style>
               {`
@@ -182,7 +175,7 @@ function ScrollRow({ images }) {
 }
 
 export default function App() {
-  // Smooth scroll behavior for in-page nav
+  // Smooth scroll for nav anchors
   useEffect(() => {
     document.documentElement.style.scrollBehavior = "smooth";
     return () => {
@@ -204,7 +197,9 @@ export default function App() {
     setLightboxAlt("");
   };
 
-  // Image groups (order: yours)
+  // IMAGE GROUPS (ORDER LOCKED IN)
+
+  // Love & Connection
   const loveAndConnectionImgs = [
     { src: sunsetKiss, alt: "sunsetKiss" },
     { src: maternityCouple, alt: "maternityCouple" },
@@ -216,23 +211,32 @@ export default function App() {
     onClick: () => openLightbox(img.src, img.alt),
   }));
 
-  const portraitsSoulImgs = [
+  // People & Portraits
+  const peoplePortraitsImgs = [
     { src: wedding, alt: "wedding" },
     { src: janetFlare, alt: "janetFlare" },
-    { src: puya1, alt: "puya1" },
-    { src: puya2, alt: "puya2" },
-    { src: puya3, alt: "puya3" },
-    { src: purpleFlower, alt: "purpleFlower" },
-    { src: whiteFlower, alt: "whiteFlower" },
   ].map((img) => ({
     ...img,
     onClick: () => openLightbox(img.src, img.alt),
   }));
 
-  const sunsetsLandscapeImgs = [
+  // Nature & Texture
+  const natureTextureImgs = [
+    { src: puya3, alt: "puya3" },
+    { src: whiteFlower, alt: "whiteFlower" },
+    { src: puya2, alt: "puya2" },
+    { src: purpleFlower, alt: "purpleFlower" },
+    { src: puya1, alt: "puya1" },
+  ].map((img) => ({
+    ...img,
+    onClick: () => openLightbox(img.src, img.alt),
+  }));
+
+  // Land & Light
+  const landLightImgs = [
     { src: mattWide, alt: "mattWide" },
-    { src: sunsetMatt, alt: "sunsetMatt" },
     { src: sunsetLayers, alt: "sunsetLayers" },
+    { src: sunsetMatt, alt: "sunsetMatt" },
     { src: sunsetMoody, alt: "sunsetMoody" },
     { src: sunsetPastel, alt: "sunsetPastel" },
   ].map((img) => ({
@@ -240,7 +244,8 @@ export default function App() {
     onClick: () => openLightbox(img.src, img.alt),
   }));
 
-  const animalsCompanionshipImgs = [
+  // Kindred Spirits
+  const kindredSpiritsImgs = [
     { src: catYawn, alt: "catYawn" },
     { src: oberonEyes, alt: "oberonEyes" },
   ].map((img) => ({
@@ -248,6 +253,7 @@ export default function App() {
     onClick: () => openLightbox(img.src, img.alt),
   }));
 
+  // Client work (unchanged)
   const clientWorkImgs = [
     { src: unwindOwner, alt: "unwindOwner" },
     { src: unwindClose, alt: "unwindClose" },
@@ -356,58 +362,75 @@ export default function App() {
           className="py-20 md:py-28 bg-stone-100 text-stone-900"
         >
           <div className="max-w-6xl mx-auto px-6">
-            <h2 className="text-3xl font-semibold mb-10 tracking-tight">
+            {/* intro line */}
+            <h2 className="text-3xl font-semibold mb-3 tracking-tight">
               Portfolio
             </h2>
+            <p className="text-stone-600 text-sm md:text-base leading-relaxed max-w-xl mb-10">
+              Stories of connection, presence, stillness, and adventure —
+              honest moments that breathe with life and light.
+            </p>
 
-            {/* Love and Connection */}
+            {/* Love & Connection */}
             <div className="mb-16">
               <h3 className="text-2xl font-medium mb-3 tracking-tight">
-                Love and Connection
+                Love &amp; Connection
               </h3>
               <p className="text-stone-600 text-sm mb-6 max-w-xl leading-relaxed">
-                Tender, held, present. The honesty between people when they feel
-                safe.
+                The beauty of being seen. Stories of love, tenderness, and
+                belonging.
               </p>
 
               <ScrollRow images={loveAndConnectionImgs} />
             </div>
 
-            {/* Portraits & Soul */}
+            {/* People & Portraits */}
             <div className="mb-16">
               <h3 className="text-2xl font-medium mb-3 tracking-tight">
-                Portraits &amp; Soul
+                People &amp; Portraits
               </h3>
               <p className="text-stone-600 text-sm mb-6 max-w-xl leading-relaxed">
-                Presence, memory, colour, devotion.
+                Everyone has a story — honest, grounded, real.
               </p>
 
-              <ScrollRow images={portraitsSoulImgs} />
+              <ScrollRow images={peoplePortraitsImgs} />
             </div>
 
-            {/* Sunsets & Landscape */}
+            {/* Nature & Texture */}
             <div className="mb-16">
               <h3 className="text-2xl font-medium mb-3 tracking-tight">
-                Sunsets &amp; Landscape
+                Nature &amp; Texture
               </h3>
               <p className="text-stone-600 text-sm mb-6 max-w-xl leading-relaxed">
-                Edges of daylight in the Blue Mountains. Breath-before-dark
-                energy.
+                Botanics, light, and texture — the art found in stillness.
               </p>
 
-              <ScrollRow images={sunsetsLandscapeImgs} />
+              <ScrollRow images={natureTextureImgs} />
             </div>
 
-            {/* Animals & Companionship */}
+            {/* Land & Light */}
             <div className="mb-16">
               <h3 className="text-2xl font-medium mb-3 tracking-tight">
-                Animals &amp; Companionship
+                Land &amp; Light
               </h3>
               <p className="text-stone-600 text-sm mb-6 max-w-xl leading-relaxed">
-                Soft faces, stolen naps, being chosen by another creature.
+                Where sky and land meet in silence. The quiet between golden
+                hour and nightfall.
               </p>
 
-              <ScrollRow images={animalsCompanionshipImgs} />
+              <ScrollRow images={landLightImgs} />
+            </div>
+
+            {/* Kindred Spirits */}
+            <div className="mb-16">
+              <h3 className="text-2xl font-medium mb-3 tracking-tight">
+                Kindred Spirits
+              </h3>
+              <p className="text-stone-600 text-sm mb-6 max-w-xl leading-relaxed">
+                Warm eyes and soft paws — love in its purest form.
+              </p>
+
+              <ScrollRow images={kindredSpiritsImgs} />
             </div>
           </div>
         </section>
