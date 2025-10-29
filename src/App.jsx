@@ -1,5 +1,5 @@
 import React from "react";
-import heroImage from "./assets/0T7A6514.jpg";
+import heroImage from "./Assets/0T7A6514.JPG";
 
 export default function App() {
   return (
