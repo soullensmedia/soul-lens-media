@@ -28,7 +28,7 @@ import whiteFlower from "./Assets/White_Flower.jpg";
 
 /* ---------------- LIGHTBOX COMPONENT ---------------- */
 function Lightbox({ src, alt, onClose }) {
-  // close on ESC
+  // ESC to exit
   useEffect(() => {
     function onKey(e) {
       if (e.key === "Escape") onClose();
@@ -47,7 +47,7 @@ function Lightbox({ src, alt, onClose }) {
       <img
         src={src}
         alt={alt || ""}
-        className="max-h-[90vh] max-w-[90vw] object-contain rounded-lg shadow-xl"
+        className="max-h-[90vh] max-w-[90vw] object-contain rounded-xl shadow-[0_30px_120px_rgba(0,0,0,0.8)] border border-white/10"
       />
     </div>
   );
@@ -55,18 +55,16 @@ function Lightbox({ src, alt, onClose }) {
 
 /* ---------------- HORIZONTAL SCROLL ROW COMPONENT ---------------- */
 /*
-Goals:
-- All cards same size
-- Rounded corners, border, soft shadow (like your grid)
-- Horizontal scroll with hidden native scrollbar
-- Gradient fades on left/right
-- Arrow buttons to scroll
+Changes from previous version:
+- Removed gradient fades
+- Arrows sit just outside the scroll container
+- Cards are now responsive: 240x240 on mobile, 320x320 md+
+- snap-mandatory for a premium swipe feel on mobile
+- Hidden scrollbar still
 */
-
 function ScrollRow({ images }) {
   const scrollerRef = useRef(null);
 
-  // scroll helper for arrows
   const scrollByAmount = (amount) => {
     if (!scrollerRef.current) return;
     scrollerRef.current.scrollBy({
@@ -77,16 +75,17 @@ function ScrollRow({ images }) {
 
   return (
     <div className="relative">
-      {/* LEFT FADE */}
-      <div className="pointer-events-none absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-stone-100 via-stone-100/80 to-transparent z-10 rounded-l-xl" />
-      {/* RIGHT FADE */}
-      <div className="pointer-events-none absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-stone-100 via-stone-100/80 to-transparent z-10 rounded-r-xl" />
-
       {/* LEFT ARROW */}
       <button
         type="button"
         onClick={() => scrollByAmount(-350)}
-        className="hidden md:flex absolute left-3 top-1/2 -translate-y-1/2 z-20 h-9 w-9 items-center justify-center rounded-full bg-stone-900/70 text-stone-100 text-lg leading-none shadow-lg hover:bg-stone-900/90"
+        className="
+          hidden md:flex
+          absolute -left-3 top-1/2 -translate-y-1/2 z-20
+          h-9 w-9 items-center justify-center
+          rounded-full bg-stone-900/80 text-stone-100 text-lg leading-none
+          shadow-lg hover:bg-stone-900
+        "
         aria-label="scroll left"
       >
         ‹
@@ -96,30 +95,34 @@ function ScrollRow({ images }) {
       <button
         type="button"
         onClick={() => scrollByAmount(350)}
-        className="hidden md:flex absolute right-3 top-1/2 -translate-y-1/2 z-20 h-9 w-9 items-center justify-center rounded-full bg-stone-900/70 text-stone-100 text-lg leading-none shadow-lg hover:bg-stone-900/90"
+        className="
+          hidden md:flex
+          absolute -right-3 top-1/2 -translate-y-1/2 z-20
+          h-9 w-9 items-center justify-center
+          rounded-full bg-stone-900/80 text-stone-100 text-lg leading-none
+          shadow-lg hover:bg-stone-900
+        "
         aria-label="scroll right"
       >
         ›
       </button>
 
-      {/* SCROLL CONTAINER */}
+      {/* SCROLLER */}
       <div
         ref={scrollerRef}
-        className="
+        className={`
           flex gap-4
           overflow-x-auto overflow-y-hidden
           scroll-smooth
-          pr-6
-          pl-6
           pb-4
-          [-ms-overflow-style:none]           /* hide scrollbar IE/Edge */
-          [scrollbar-width:none]              /* hide scrollbar Firefox */
-        "
-        style={{
-          WebkitOverflowScrolling: "touch",
-        }}
+          snap-x snap-mandatory
+          cursor-grab active:cursor-grabbing
+          [-ms-overflow-style:none]
+          [scrollbar-width:none]
+        `}
+        style={{ WebkitOverflowScrolling: "touch" }}
       >
-        {/* hide scrollbar Chrome/Safari */}
+        {/* Hide scrollbar Chrome/Safari */}
         <style>
           {`
             div::-webkit-scrollbar {
@@ -132,7 +135,7 @@ function ScrollRow({ images }) {
           <button
             key={i}
             onClick={img.onClick}
-            className="
+            className={`
               relative flex-shrink-0
               bg-stone-200
               border border-stone-300/60
@@ -142,18 +145,35 @@ function ScrollRow({ images }) {
               transition-all
               overflow-hidden
               cursor-zoom-in
-            "
+              snap-start
+            `}
             style={{
-              width: "320px",
-              height: "320px",
+              width: "240px",
+              height: "240px",
             }}
           >
             <img
               src={img.src}
               alt={img.alt || ""}
-              className="w-full h-full object-cover select-none"
+              className="w-full h-full object-cover select-none md:rounded-xl"
               draggable="false"
+              style={{
+                // on desktop we want 320x320 instead of 240x240
+                // we'll upscale via a media query inline style trick
+                // but React inline styles can't do media queries,
+                // so we'll just handle it with responsive utility classes below.
+              }}
             />
+            <style>
+              {`
+                @media (min-width: 768px) {
+                  button[style*="240px"][style*="240px"] {
+                    width:320px !important;
+                    height:320px !important;
+                  }
+                }
+              `}
+            </style>
           </button>
         ))}
       </div>
@@ -162,6 +182,14 @@ function ScrollRow({ images }) {
 }
 
 export default function App() {
+  // Smooth scroll behavior for in-page nav
+  useEffect(() => {
+    document.documentElement.style.scrollBehavior = "smooth";
+    return () => {
+      document.documentElement.style.scrollBehavior = "";
+    };
+  }, []);
+
   // Lightbox state
   const [lightboxSrc, setLightboxSrc] = useState(null);
   const [lightboxAlt, setLightboxAlt] = useState("");
@@ -176,7 +204,7 @@ export default function App() {
     setLightboxAlt("");
   };
 
-  // Image groups (your order, your naming)
+  // Image groups (order: yours)
   const loveAndConnectionImgs = [
     { src: sunsetKiss, alt: "sunsetKiss" },
     { src: maternityCouple, alt: "maternityCouple" },
@@ -233,7 +261,7 @@ export default function App() {
 
   return (
     <>
-      {/* Fullscreen lightbox */}
+      {/* fullscreen lightbox */}
       <Lightbox src={lightboxSrc} alt={lightboxAlt} onClose={closeLightbox} />
 
       <main className="bg-stone-100 text-stone-800 font-serif leading-relaxed">
@@ -293,10 +321,10 @@ export default function App() {
           <div className="absolute inset-0 bg-gradient-to-t from-stone-900/80 via-stone-900/30 to-transparent" />
           <div className="relative max-w-6xl mx-auto px-6 py-24 md:py-32">
             <div className="max-w-xl">
-              <h1 className="text-4xl md:text-6xl font-semibold text-stone-100 leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+              <h1 className="text-4xl md:text-6xl font-semibold text-stone-100 leading-tight tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
                 Soul Lens Media
               </h1>
-              <p className="text-stone-200/90 text-lg md:text-xl mt-4 italic">
+              <p className="text-stone-200/90 text-lg md:text-xl mt-4 italic leading-snug">
                 Cinematic storytelling through soul and lens.
               </p>
               <p className="text-stone-200/80 text-sm md:text-base mt-6 leading-relaxed">
@@ -328,12 +356,16 @@ export default function App() {
           className="py-20 md:py-28 bg-stone-100 text-stone-900"
         >
           <div className="max-w-6xl mx-auto px-6">
-            <h2 className="text-3xl font-semibold mb-10">Portfolio</h2>
+            <h2 className="text-3xl font-semibold mb-10 tracking-tight">
+              Portfolio
+            </h2>
 
             {/* Love and Connection */}
             <div className="mb-16">
-              <h3 className="text-2xl font-medium mb-3">Love and Connection</h3>
-              <p className="text-stone-600 text-sm mb-6 max-w-xl">
+              <h3 className="text-2xl font-medium mb-3 tracking-tight">
+                Love and Connection
+              </h3>
+              <p className="text-stone-600 text-sm mb-6 max-w-xl leading-relaxed">
                 Tender, held, present. The honesty between people when they feel
                 safe.
               </p>
@@ -343,8 +375,10 @@ export default function App() {
 
             {/* Portraits & Soul */}
             <div className="mb-16">
-              <h3 className="text-2xl font-medium mb-3">Portraits &amp; Soul</h3>
-              <p className="text-stone-600 text-sm mb-6 max-w-xl">
+              <h3 className="text-2xl font-medium mb-3 tracking-tight">
+                Portraits &amp; Soul
+              </h3>
+              <p className="text-stone-600 text-sm mb-6 max-w-xl leading-relaxed">
                 Presence, memory, colour, devotion.
               </p>
 
@@ -353,10 +387,10 @@ export default function App() {
 
             {/* Sunsets & Landscape */}
             <div className="mb-16">
-              <h3 className="text-2xl font-medium mb-3">
+              <h3 className="text-2xl font-medium mb-3 tracking-tight">
                 Sunsets &amp; Landscape
               </h3>
-              <p className="text-stone-600 text-sm mb-6 max-w-xl">
+              <p className="text-stone-600 text-sm mb-6 max-w-xl leading-relaxed">
                 Edges of daylight in the Blue Mountains. Breath-before-dark
                 energy.
               </p>
@@ -366,10 +400,10 @@ export default function App() {
 
             {/* Animals & Companionship */}
             <div className="mb-16">
-              <h3 className="text-2xl font-medium mb-3">
+              <h3 className="text-2xl font-medium mb-3 tracking-tight">
                 Animals &amp; Companionship
               </h3>
-              <p className="text-stone-600 text-sm mb-6 max-w-xl">
+              <p className="text-stone-600 text-sm mb-6 max-w-xl leading-relaxed">
                 Soft faces, stolen naps, being chosen by another creature.
               </p>
 
@@ -384,8 +418,10 @@ export default function App() {
           className="py-20 md:py-28 bg-stone-900 text-stone-100"
         >
           <div className="max-w-6xl mx-auto px-6">
-            <h2 className="text-3xl font-semibold mb-6">Client Work</h2>
-            <p className="text-stone-300 text-sm mb-10 max-w-xl">
+            <h2 className="text-3xl font-semibold mb-6 tracking-tight">
+              Client Work
+            </h2>
+            <p className="text-stone-300 text-sm mb-10 max-w-xl leading-relaxed">
               Unwind Studios — recovery, breathwork, and stillness.
             </p>
 
@@ -400,18 +436,20 @@ export default function App() {
         >
           <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
             <div>
-              <h2 className="text-3xl font-semibold mb-4">About</h2>
-              <p className="text-stone-700 mb-3">
+              <h2 className="text-3xl font-semibold mb-4 tracking-tight">
+                About
+              </h2>
+              <p className="text-stone-700 mb-3 leading-relaxed">
                 I'm Matt Hardaker. I shoot in honest light — mostly at the
                 edges of the day when things feel a little slower and a little
                 more true.
               </p>
-              <p className="text-stone-700 mb-3">
+              <p className="text-stone-700 mb-3 leading-relaxed">
                 My work lives where tenderness meets presence: maternity at
                 sunset, quiet jawline light, sleepy cats, the second right
                 before you both laugh.
               </p>
-              <p className="text-stone-700">
+              <p className="text-stone-700 leading-relaxed">
                 Soul Lens Media is for people who value real connection over
                 posing, and feeling over polish.
               </p>
@@ -433,8 +471,10 @@ export default function App() {
           className="py-20 md:py-28 bg-stone-200 text-stone-900"
         >
           <div className="max-w-4xl mx-auto px-6">
-            <h2 className="text-3xl font-semibold mb-6">Let's talk</h2>
-            <p className="text-stone-700 mb-8">
+            <h2 className="text-3xl font-semibold mb-6 tracking-tight">
+              Let's talk
+            </h2>
+            <p className="text-stone-700 mb-8 leading-relaxed">
               Tell me what you're dreaming up — maternity, connection,
               portraits, brand work, or something we haven't named yet.
             </p>
