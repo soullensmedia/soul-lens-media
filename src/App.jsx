@@ -1,4 +1,5 @@
 import React from "react";
+import heroImage from "./assets/0T7A6514.jpg";
 
 export default function App() {
   return (
@@ -36,13 +37,10 @@ export default function App() {
 
       {/* HERO SECTION */}
       <section
-        id="home"
-        className="relative w-full min-h-[100vh] flex items-end text-stone-100 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url(https://drive.google.com/uc?export=view&id=1Xws6pkPa3I1BdrXRrO4lUbMqZ7TYei-z)",
-        }}
-      >
+  id="home"
+  className="relative w-full min-h-[90vh] flex items-end text-stone-100 bg-cover bg-center"
+  style={{ backgroundImage: `url(${heroImage})` }}
+>
         <div className="absolute inset-0 bg-gradient-to-t from-stone-900/80 via-stone-900/30 to-transparent" />
         <div className="relative max-w-6xl mx-auto px-6 py-24 md:py-32">
           <div className="max-w-xl">
